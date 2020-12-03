@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Media Player</string>
+    <string name="media_player">Media Player</string>
+    <string name="song_name">Song_Name</string>
+    <string name="musicImage">MusicImage</string>
+    <string name="play"><![CDATA[>]]></string>
+    <string name="reverse"><![CDATA[<<]]></string>
+    <string name="forward"><![CDATA[>>]]></string>
+    <string name="pause">||</string>
+    <string name="start">start</string>
+    <string name="end">end</string>
+    <string name="startTime">00:00</string>
+</resources>
