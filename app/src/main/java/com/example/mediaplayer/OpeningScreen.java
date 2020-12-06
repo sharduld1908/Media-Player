@@ -14,7 +14,8 @@ public class OpeningScreen extends AppCompatActivity {
         setContentView(R.layout.activity_opening_screen);
 
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(OpeningScreen.this, MainActivity.class);
+            Intent intent = new Intent(OpeningScreen.this, ListOfSong.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             OpeningScreen.this.startActivity(intent);
             OpeningScreen.this.finish();
         },2000);

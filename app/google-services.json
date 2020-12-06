@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "707070096929",
+    "firebase_url": "https://media-player-37eec.firebaseio.com",
+    "project_id": "media-player-37eec",
+    "storage_bucket": "media-player-37eec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707070096929:android:92c1a5a59054a38cee5560",
+        "android_client_info": {
+          "package_name": "com.example.mediaplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707070096929-nn6i2bj6a3qb8o6a8pmsm7lh7gjtekla.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mediaplayer",
+            "certificate_hash": "e9b8f0c424e611306fe42fd1589eb59bb7b95213"
+          }
+        },
+        {
+          "client_id": "707070096929-0l1qn9ffq0b2evse4115bn70qbngm8d2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJptxIHvwpFHUzh-aflJ84WXpjTCPIoDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707070096929-0l1qn9ffq0b2evse4115bn70qbngm8d2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class Player extends AppCompatActivity {
     private Button pause;
     private Button play;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_player);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.song);
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         bar = seekBar.findViewById(R.id.bar);
         bar.setClickable(true);
 
-        LinearLayout buttonPanel = findViewById(R.id.buttonPanel);
+        RelativeLayout buttonPanel = findViewById(R.id.buttonPanel);
 
         handler = new Handler();
 
