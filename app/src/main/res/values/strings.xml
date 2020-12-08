@@ -11,4 +11,5 @@
     <string name="end">end</string>
     <string name="startTime">00:00</string>
     <string name="upload">upload</string>
+    <string name="playtext">play</string>
 </resources>

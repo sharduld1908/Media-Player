@@ -3,6 +3,7 @@ package com.example.mediaplayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class Player extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private double startTime;
     private double finishTime;
+    public static Uri musicUri;
 
     private SeekBar bar;
     private TextView start;
@@ -34,7 +36,7 @@ public class Player extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.song);
+        mediaPlayer = MediaPlayer.create(this, musicUri);
 
         LinearLayout seekBar = findViewById(R.id.seekBar);
         start = seekBar.findViewById(R.id.start);
