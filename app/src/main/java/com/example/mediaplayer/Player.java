@@ -24,18 +24,21 @@ public class Player extends AppCompatActivity {
     private double startTime;
     private double finishTime;
     public static Uri musicUri;
+    public static String name;
 
     private SeekBar bar;
     private TextView start;
     private TextView stop;
+    private TextView songName;
 
     private Handler handler;
-    private int once = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
+        songName = findViewById(R.id.songName);
+        songName.setText(name);
         mediaPlayer = MediaPlayer.create(this, musicUri);
 
         LinearLayout seekBar = findViewById(R.id.seekBar);
@@ -49,9 +52,21 @@ public class Player extends AppCompatActivity {
         handler = new Handler();
 
         play = buttonPanel.findViewById(R.id.play);
-        pause = buttonPanel.findViewById(R.id.pause);pause.setEnabled(false);
+        play.setEnabled(false);
+        pause = buttonPanel.findViewById(R.id.pause);
         Button forward = buttonPanel.findViewById(R.id.forward);
         Button reverse = buttonPanel.findViewById(R.id.reverse);
+
+        mediaPlayer.start();
+        finishTime = mediaPlayer.getDuration();
+        startTime = mediaPlayer.getCurrentPosition();
+        bar.setMax((int)finishTime);
+        start.setText(convert((long)startTime));
+        stop.setText(convert((long)finishTime));
+
+        bar.setProgress((int)startTime);
+        handler.postDelayed(runnable,100);
+
 
         play.setOnClickListener(view -> {
             Toast.makeText(getApplicationContext(),"Play song",Toast.LENGTH_SHORT).show();
@@ -59,10 +74,6 @@ public class Player extends AppCompatActivity {
 
             finishTime = mediaPlayer.getDuration();
             startTime = mediaPlayer.getCurrentPosition();
-            if(once == 0) {
-                bar.setMax((int)finishTime);
-                once = 1;
-            }
 
             start.setText(convert((long)startTime));
             stop.setText(convert((long)finishTime));
@@ -139,5 +150,11 @@ public class Player extends AppCompatActivity {
         return String.format(Locale.ENGLISH,"%02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes(time),
                 TimeUnit.MILLISECONDS.toSeconds(time) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(time)));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mediaPlayer.stop();
     }
 }

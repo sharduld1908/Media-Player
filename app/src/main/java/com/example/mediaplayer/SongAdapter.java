@@ -42,6 +42,7 @@ public class SongAdapter extends FirebaseRecyclerAdapter<Song, SongAdapter.Music
             Button playButton = itemView.findViewById(R.id.play_button);
 
             playButton.setOnClickListener(view -> {
+                Player.name = nameOfTheSong.getText().toString().trim();
                 Player.musicUri = songUri;
                 Intent intent = new Intent(itemView.getContext(),Player.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

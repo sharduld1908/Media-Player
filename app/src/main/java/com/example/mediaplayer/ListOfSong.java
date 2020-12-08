@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -25,12 +26,14 @@ public class ListOfSong extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
     private RecyclerView listOfSongs;
     private SongAdapter songAdapter;
+    private LoadingBar loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_song);
-
+        loadingBar = new LoadingBar(this);
+        loadingBar.showDialog();
         FloatingActionButton addButton = findViewById(R.id.addSong);
         addButton.setOnClickListener(view -> openFileChooser());
         listOfSongs = findViewById(R.id.list_of_songs);
@@ -39,8 +42,13 @@ public class ListOfSong extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("music");
 
         populate();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingBar.hideDialog();
+            }
+        },3000);
     }
-
     private void populate() {
         Query query = FirebaseDatabase.getInstance()
                 .getReference().child("music");
@@ -78,6 +86,7 @@ public class ListOfSong extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        loadingBar.showDialog();
         if(requestCode == Constants.PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri fileUri = data.getData();
             int idx = fileUri.toString().indexOf("%2F");
@@ -105,6 +114,7 @@ public class ListOfSong extends AppCompatActivity {
                 }else {
                     Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
                 }
+                loadingBar.hideDialog();
             });
         }
     }
